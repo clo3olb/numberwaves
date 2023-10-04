@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "local": "ts-node index.ts",
-    "dev": "nodemon --exec 'npm run local' --watch index.ts --watch src -e ts"
+    "dev": "nodemon --exec 'npm run local' --watch index.ts --watch src -e ts",
+    "test": "NODE_ENV=test jest"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,10 @@
   },
   "homepage": "https://github.com/clo3olb/numberwaves#readme",
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.5",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1"
   }
 }
