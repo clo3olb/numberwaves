@@ -4,7 +4,8 @@
   "description": "Repository for large historical stock market price data with fast query",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "local": "ts-node index.ts",
+    "dev": "nodemon --exec 'npm run local' --watch index.ts --watch src -e ts"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/clo3olb/numberwaves/issues"
   },
-  "homepage": "https://github.com/clo3olb/numberwaves#readme"
+  "homepage": "https://github.com/clo3olb/numberwaves#readme",
+  "devDependencies": {
+    "ts-node": "^10.9.1"
+  }
 }
