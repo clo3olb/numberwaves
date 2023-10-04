@@ -1,6 +1,6 @@
 /**
  *
- * @param url - The url to append the params to.
+ * @param url - The url with path to append the params to.
  * @param params - The params to append to the url.
  * @returns The url with the params appended.
  */
