@@ -1,0 +1,20 @@
+{
+  "name": "numberwaves",
+  "version": "1.0.0",
+  "description": "Repository for large historical stock market price data with fast query",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clo3olb/numberwaves.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clo3olb/numberwaves/issues"
+  },
+  "homepage": "https://github.com/clo3olb/numberwaves#readme"
+}
