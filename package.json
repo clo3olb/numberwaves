@@ -4,7 +4,7 @@
   "description": "Repository for large historical stock market price data with fast query",
   "main": "index.js",
   "scripts": {
-    "local": "ts-node index.ts",
+    "local": "ts-node src/index.ts",
     "dev": "nodemon --exec 'npm run local' --watch index.ts --watch src -e ts",
     "test": "NODE_ENV=test jest"
   },
