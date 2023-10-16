@@ -1,6 +1,7 @@
 export type Quote = {
   ticker: string;
   timestamp: number;
+  date: string;
   open: number;
   high: number;
   low: number;
