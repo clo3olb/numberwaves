@@ -3,6 +3,7 @@
         "target": "ES6",
         "esModuleInterop": true,
         "outDir": "dist",
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "strict": true
     }
 }
