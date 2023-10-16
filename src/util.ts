@@ -4,7 +4,10 @@
  * @param params - The params to append to the url.
  * @returns The url with the params appended.
  */
-export function createUrlWithParams(url: string, params: object) {
+export function createUrlWithParams(
+  url: string,
+  params: { [key: string]: any }
+) {
   const keys = Object.keys(params);
   if (keys.length === 0) return url;
 
