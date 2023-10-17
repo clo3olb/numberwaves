@@ -1,6 +1,17 @@
 import axios from "axios";
 import { formatDate } from "../util";
 
+export async function getIntradayQuotes(ticker: string) {
+  // https://charting.nasdaq.com/data/charting/intraday?symbol=TSLA&mostRecent=1&includeLatestIntradayData=1
+  const numberOfDays = 20;
+  const url = `https://charting.nasdaq.com/data/charting/intraday?symbol=${ticker}&mostRecent=${numberOfDays}&includeLatestIntradayData=1`;
+  const res = await axios.get(url, {
+    headers,
+  });
+  const data = res.data;
+  return data;
+}
+
 export async function getEarnings(date: Date) {
   //https://www.nasdaq.com/market-activity/earnings
   const formattedDate = formatDate(date);
