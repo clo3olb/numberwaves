@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createUrlWithParams } from "../util";
-import { Quote } from "../types/Quote";
+import { Quote } from "../types";
 import fs from "fs";
 
 export async function getYahooQuotes(ticker: string): Promise<Quote[]> {
