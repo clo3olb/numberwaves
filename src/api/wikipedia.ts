@@ -8,13 +8,11 @@ export async function getWikipediaSP500CompaniesList(): Promise<Company[]> {
   const res = await axios.get(url);
   const $ = cheerio.load(res.data);
 
-  require("fs").writeFileSync("./test.txt", res.data);
   const table = $("#constituents");
   const rows = table.find("tr");
 
   const companies = rows
     .map((i, row) => {
-      console.log($(row).text());
       const tds = $(row).find("td");
       const symbol = $(tds[0]).text().trim();
       const name = $(tds[1]).text().trim();
