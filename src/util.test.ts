@@ -75,6 +75,11 @@ describe("formatDate", () => {
     const formattedDate = formatDate(date);
     expect(formattedDate).toBe("2021-01-02");
   });
+  it("must format Mon, Oct 16, 2023 to 2023-10-16", () => {
+    const date = new Date("Mon, Oct 16, 2023");
+    const formattedDate = formatDate(date);
+    expect(formattedDate).toBe("2023-10-16");
+  });
 });
 
 describe("monthToNum", () => {
