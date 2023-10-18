@@ -1,3 +1,10 @@
+export type IntradayQuote = {
+  ticker: string;
+  timestamp: string;
+  value: number;
+  volume: number;
+};
+
 export type RawQuote = {
   ticker: string;
   timestamp: string;
