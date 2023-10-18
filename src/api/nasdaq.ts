@@ -1,7 +1,6 @@
 import axios from "axios";
-import { formatDate } from "../util";
+import { formatDate } from "../lib/util";
 import { IntradayQuote, RawEarning, RawEarningWithoutDate } from "../types";
-import fs from "fs";
 
 export async function getNasdaqIntradayQuotes(
   ticker: string

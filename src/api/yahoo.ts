@@ -1,9 +1,8 @@
 import axios from "axios";
-import { createUrlWithParams } from "../util";
-import { Quote } from "../types";
-import fs from "fs";
+import { createUrlWithParams } from "../lib/util";
+import { RawQuote } from "../types";
 
-export async function getYahooQuotes(ticker: string): Promise<Quote[]> {
+export async function getYahooQuotes(ticker: string): Promise<RawQuote[]> {
   const BASE_URL = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}`;
 
   const API_URL = createUrlWithParams(BASE_URL, {
@@ -24,7 +23,7 @@ export async function getYahooQuotes(ticker: string): Promise<Quote[]> {
   const meta = quote.meta;
   const timestamps = quote.timestamp;
 
-  const quotes: Quote[] = [];
+  const quotes: RawQuote[] = [];
 
   for (let i = 0; i < timestamps.length; i++) {
     quotes.push({
@@ -52,7 +51,7 @@ export type HistoricalDataQueryOptions = {
   includeAdjustedClose?: boolean;
 };
 
-export async function downloadHistoricalData(
+export async function getHistoricalData(
   ticker: string,
   options?: HistoricalDataQueryOptions
 ) {
@@ -74,24 +73,18 @@ export async function downloadHistoricalData(
   const response = await axios.get(API_URL);
   const data = response.data as string;
 
-  if (!fs.existsSync("./data")) {
-    fs.mkdirSync("./data");
-  }
-  fs.opendirSync("./data");
-  fs.writeFileSync(`./data/${ticker}.csv`, data);
-
   const rows = data.split("\n");
-  const histories: Quote[] = rows
+  const histories: RawQuote[] = rows
     .map((row) => row.split(","))
     .map((row) => ({
       ticker,
-      timestamp: new Date(row[0]).getTime(),
+      timestamp: row[0],
       date: row[0],
-      open: Number(row[1]),
-      high: Number(row[2]),
-      low: Number(row[3]),
-      close: Number(row[4]),
-      volume: Number(row[6]),
+      open: row[1],
+      high: row[2],
+      low: row[3],
+      close: row[4],
+      volume: row[6],
     }));
 
   return histories;
