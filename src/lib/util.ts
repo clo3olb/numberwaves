@@ -1,3 +1,5 @@
+import { Quote } from "../types";
+
 /**
  *
  * @param url - The url with path to append the params to.
@@ -101,4 +103,40 @@ export function monthToNum(month: string) {
     default:
       throw new Error("Invalid month");
   }
+}
+
+export function toQuotes(headers: string[], row: string[]): Quote {
+  const keys: (keyof Quote)[] = [
+    "ticker",
+    "timestamp",
+    "date",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+  ];
+
+  if (keys.length !== headers.length) {
+    throw new Error("headers length and keys length are not equal");
+  }
+  if (keys.every((key) => headers.includes(key))) {
+    throw new Error("headers does not include all keys");
+  }
+  if (keys.length !== row.length) {
+    throw new Error("row length and keys length are not equal");
+  }
+
+  const quote: Quote = {
+    ticker: row[headers.findIndex((header) => header === "ticker")],
+    timestamp: row[headers.findIndex((header) => header === "timestamp")],
+    date: row[headers.findIndex((header) => header === "date")],
+    open: row[headers.findIndex((header) => header === "open")],
+    high: row[headers.findIndex((header) => header === "high")],
+    low: row[headers.findIndex((header) => header === "low")],
+    close: row[headers.findIndex((header) => header === "close")],
+    volume: row[headers.findIndex((header) => header === "volume")],
+  };
+
+  return quote;
 }

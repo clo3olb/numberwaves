@@ -5,7 +5,7 @@ export type IntradayQuote = {
   volume: number;
 };
 
-export type RawQuote = {
+export type Quote = {
   ticker: string;
   timestamp: string;
   date: string;
@@ -16,7 +16,7 @@ export type RawQuote = {
   volume: string;
 };
 
-export type RawEarning = {
+export type Earning = {
   date: string;
   eps: string;
   surprise: string;
@@ -28,8 +28,6 @@ export type RawEarning = {
   epsForecast: string;
   noOfEsts: string;
 };
-
-export type RawEarningWithoutDate = Omit<RawEarning, "date">;
 
 export type Company = {
   symbol: string;

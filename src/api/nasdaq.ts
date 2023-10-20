@@ -1,6 +1,6 @@
 import axios from "axios";
 import { formatDate } from "../lib/util";
-import { IntradayQuote, RawEarning, RawEarningWithoutDate } from "../types";
+import { IntradayQuote, Earning } from "../types";
 
 export async function getNasdaqIntradayQuotes(
   ticker: string
@@ -25,14 +25,14 @@ export async function getNasdaqIntradayQuotes(
   return intradayQuotes;
 }
 
-export async function getNasdaqEarnings(date: Date): Promise<RawEarning[]> {
+export async function getNasdaqEarnings(date: Date): Promise<Earning[]> {
   //https://www.nasdaq.com/market-activity/earnings
   const formattedDate = formatDate(date);
   const url = `https://api.nasdaq.com/api/calendar/earnings?date=${formattedDate}`;
 
   const res = await axios.get(url, { headers });
 
-  const earnings = res.data.data.rows as RawEarningWithoutDate[];
+  const earnings = res.data.data.rows as Omit<Earning, "date">[];
 
   if (res.data.status.rCode !== 200 || res.status !== 200) {
     const message = res.data.status.message;

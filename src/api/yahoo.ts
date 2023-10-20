@@ -1,8 +1,8 @@
 import axios from "axios";
 import { createUrlWithParams } from "../lib/util";
-import { RawQuote } from "../types";
+import { Quote } from "../types";
 
-export async function getYahooQuotes(ticker: string): Promise<RawQuote[]> {
+export async function getYahooQuotes(ticker: string): Promise<Quote[]> {
   const BASE_URL = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}`;
 
   const API_URL = createUrlWithParams(BASE_URL, {
@@ -23,7 +23,7 @@ export async function getYahooQuotes(ticker: string): Promise<RawQuote[]> {
   const meta = quote.meta;
   const timestamps = quote.timestamp;
 
-  const quotes: RawQuote[] = [];
+  const quotes: Quote[] = [];
 
   for (let i = 0; i < timestamps.length; i++) {
     quotes.push({
@@ -74,7 +74,7 @@ export async function getHistoricalData(
   const data = response.data as string;
 
   const rows = data.split("\n");
-  const histories: RawQuote[] = rows
+  const histories: Quote[] = rows
     .map((row) => row.split(","))
     .map((row) => ({
       ticker,
