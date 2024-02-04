@@ -5,11 +5,15 @@ import { IntradayQuote, Earning } from "../types";
 export async function getNasdaqIntradayQuotes(
   ticker: string
 ): Promise<IntradayQuote[]> {
-  const numberOfDays = 7;
+  const numberOfDays = 4;
   const url = `https://charting.nasdaq.com/data/charting/intraday?symbol=${ticker}&mostRecent=${numberOfDays}&includeLatestIntradayData=1`;
   const res = await axios.get(url, {
     headers,
   });
+
+  if (!res.data.marketData) {
+    return [];
+  }
 
   const intradayQuotes: IntradayQuote[] = res.data.marketData.map(
     (quote: any) => {
