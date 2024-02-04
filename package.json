@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "local": "ts-node src/index.ts",
+    "compile": "nodemon --exec 'python3 src/compile.py' --watch src -e py",
     "dev": "nodemon --exec 'npm run local' --watch index.ts --watch src -e ts",
     "test": "NODE_ENV=test jest"
   },
